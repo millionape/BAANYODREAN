@@ -1,25 +1,33 @@
 <template>
   <div class="wrapper">
-    <parallax class="section page-header header-filter" :style="headerStyle">
+    <parallax class="section page-header header-filter headerBG" :style="headerStyle">
       <div class="container">
         <div class="md-layout">
-          <div
-            class="md-layout-item md-size-50 md-small-size-70 md-xsmall-size-100"
-          >
-            <h1 class="title">Your Story Starts With Us.</h1>
-            <h4>
-              Every landing page needs a small description after the big bold
-              title, that's why we added this text here. Add here all the
-              information that can make you or your product create the first
-              impression.
-            </h4>
+          <div class="md-layout-item md-size-70 md-small-size-100 md-xsmall-size-130">
+            <span class="md-display-3" id="title1">บ้านหยอดเหรียญ</span>
+
+            <h4>สินค้าดี ที่เดียวจบ ครบวงจร</h4>
             <br />
             <md-button
-              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              v-scroll-to="{
+                  el: '#ourProduct',
+                  
+                  duration: 700,
+                  easing: 'ease-in-out',
+                  offset: -150,
+                  force: true,
+                  cancelable: true,
+                  onStart: onStart,
+                  onDone: onDone,
+                  onCancel: onCancel,
+                  x: false,
+                  y: true
+              }"
               class="md-success md-lg"
               target="_blank"
-              ><i class="fas fa-play"></i> Watch video</md-button
             >
+              <i class="fas fa-shopping-basket"></i>สินค้าของเรา
+            </md-button>
           </div>
         </div>
       </div>
@@ -28,114 +36,102 @@
       <div class="section">
         <div class="container">
           <div class="md-layout">
-            <div
-              class="md-layout-item md-size-66 md-xsmall-size-100 mx-auto text-center"
-            >
-              <h2 class="title text-center">Let's talk product</h2>
-              <h5 class="description">
-                This is the paragraph where you can write more details about
-                your product. Keep you user engaged by providing meaningful
-                information. Remember that by this time, the user is curious,
-                otherwise he wouldn't scroll to get here. Add a button if you
-                want the user to see more.
-              </h5>
+            <div class="md-layout-item md-size-66 md-xsmall-size-100 mx-auto text-center">
+              <!-- <h2 class="title text-center">บ้านหยอดเหรียญ</h2> -->
+              <md-card-media id="logo1" class="BannerCenter">
+                <img :src="logo" alt="People" />
+              </md-card-media>
+              <br />
+              <span
+                class="md-subheading"
+              >เราเป็นผู้ให้บริการสินค้าตู้หยอดเหรียญต่างๆ เช่น เครื่องซักผ้าหยอดเหรียญ, ตู้กดน้ำดื่มหยอดเหรียญ, และโมดูลกล่องหยอดเหรียญที่มีคุณภาพสูง นึกถึงเครื่องหยอดเหรียญ นึกถึง "บ้านหยอดเหรียญ"</span>
             </div>
           </div>
+          <br />
+          <br />
+          <div>
+            <vue-flux
+              id="fluxBanner"
+              :options="fluxOptions"
+              :images="fluxImages"
+              :transitions="fluxTransitions"
+              ref="slider"
+            >
+              <flux-pagination slot="pagination"></flux-pagination>
+              <flux-controls slot="controls"></flux-controls>
+            </vue-flux>
+          </div>
+          <br />
+          <br />
+          <md-divider></md-divider>
           <div class="features text-center">
-            <div class="md-layout">
-              <div class="md-layout-item md-medium-size-33 md-small-size-100">
-                <div class="info">
-                  <div class="icon icon-info">
-                    <md-icon>chat</md-icon>
-                  </div>
-                  <h4 class="info-title">Free Chat</h4>
-                  <p>
-                    Divide details about your product or agency work into parts.
-                    Write a few lines about each one. A paragraph describing a
-                    feature will be enough.
-                  </p>
-                </div>
+            <h2 class="title text-center" id="ourProduct">สินค้าของเรา</h2>
+            <div class="md-layout md-gutter">
+              <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+                <md-card md-with-hover>
+                  <md-card-media>
+                    <img :src="product1" alt="People" style="object-fit: contain;" />
+                  </md-card-media>
+
+                  <md-card-content>
+                    <div class="md-title">เครื่องซักผ้าหยอดเหรียญ</div>
+                    <div class="md-subhead">คลิ๊กเพื่อดูสินค้าทังหมด</div>
+                  </md-card-content>
+                </md-card>
               </div>
-              <div class="md-layout-item md-medium-size-33 md-small-size-100">
-                <div class="info">
-                  <div class="icon icon-success">
-                    <md-icon>verified_user</md-icon>
-                  </div>
-                  <h4 class="info-title">Verified Users</h4>
-                  <p>
-                    Divide details about your product or agency work into parts.
-                    Write a few lines about each one. A paragraph describing a
-                    feature will be enough.
-                  </p>
-                </div>
+              <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+                <md-card md-with-hover>
+                  <md-card-media>
+                    <img :src="product2" alt="People" style="object-fit: contain;" />
+                  </md-card-media>
+
+                  <md-card-content>
+                    <div class="md-title">ตู้กดน้ำหยอดเหรียญ</div>
+                    <div class="md-subhead">คลิ๊กเพื่อดูสินค้าทังหมด</div>
+                  </md-card-content>
+                </md-card>
               </div>
-              <div class="md-layout-item md-medium-size-33 md-small-size-100">
-                <div class="info">
-                  <div class="icon icon-danger">
-                    <md-icon>fingerprint</md-icon>
-                  </div>
-                  <h4 class="info-title">Fingerprint</h4>
-                  <p>
-                    Divide details about your product or agency work into parts.
-                    Write a few lines about each one. A paragraph describing a
-                    feature will be enough.
-                  </p>
-                </div>
+              <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+                <md-card md-with-hover>
+                  <md-card-media>
+                    <img :src="product3" alt="People" style="object-fit: contain;" />
+                  </md-card-media>
+
+                  <md-card-content>
+                    <!-- <div class="md-title">เครื่องหยอดเหรียญอเนกประสงค์</div> -->
+                    <span class="md-title">เครื่องหยอดเหรียญอเนกประสงค์</span>
+                    <div class="md-subhead">คลิ๊กเพื่อดูสินค้าทั้งหมด</div>
+                  </md-card-content>
+                </md-card>
               </div>
             </div>
+            <br />
+            <md-divider></md-divider>
           </div>
         </div>
       </div>
       <div class="section text-center">
         <div class="container">
-          <h2 class="title">Here is our team</h2>
+          <h2 class="title">ติดต่อเรา</h2>
           <div class="team">
             <div class="md-layout">
               <div class="md-layout-item md-medium-size-33 md-small-size-100">
                 <div class="team-player">
                   <md-card class="md-card-plain">
                     <div class="md-layout-item md-size-50 mx-auto">
-                      <img
-                        :src="teamImg1"
-                        alt="Thumbnail Image"
-                        class="img-raised rounded-circle img-fluid"
-                      />
+                      <a href="#" @click.prevent="openLinePage">
+                        <img
+                          :src="social_line"
+                          alt="Thumbnail Image"
+                          class="img-raised rounded-circle img-fluid social-img"
+                        />
+                      </a>
                     </div>
                     <h4 class="card-title">
-                      Gigi Hadid
+                      Line
                       <br />
-                      <small class="card-description text-muted">Model</small>
+                      <!-- <small class="card-description text-muted">Model</small> -->
                     </h4>
-
-                    <md-card-content>
-                      <p class="card-description">
-                        You can write here details about one of your team
-                        members. You can give more details about what they do.
-                        Feel free to add some <a href="#">links</a> for people
-                        to be able to follow them outside the site.
-                      </p>
-                    </md-card-content>
-
-                    <md-card-actions class="text-center">
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-twitter"></i>
-                      </md-button>
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-instagram"></i>
-                      </md-button>
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-facebook-square"></i>
-                      </md-button>
-                    </md-card-actions>
                   </md-card>
                 </div>
               </div>
@@ -143,43 +139,19 @@
                 <div class="team-player">
                   <md-card class="md-card-plain">
                     <div class="md-layout-item md-size-50 mx-auto">
-                      <img
-                        :src="teamImg2"
-                        alt="Thumbnail Image"
-                        class="img-raised rounded-circle img-fluid"
-                      />
+                      <a href="#" @click.prevent="openFBPage">
+                        <img
+                          :src="social_fb"
+                          alt="Thumbnail Image"
+                          class="img-raised rounded-circle img-fluid social-img"
+                        />
+                      </a>
                     </div>
                     <h4 class="card-title">
-                      Carla Hortensia
+                      Facebook
                       <br />
-                      <small class="card-description text-muted"
-                        >Designer</small
-                      >
+                      <!-- <small class="card-description text-muted">Designer</small> -->
                     </h4>
-
-                    <md-card-content>
-                      <p class="card-description">
-                        You can write here details about one of your team
-                        members. You can give more details about what they do.
-                        Feel free to add some <a href="#">links</a> for people
-                        to be able to follow them outside the site.
-                      </p>
-                    </md-card-content>
-
-                    <md-card-actions class="text-center">
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-twitter"></i>
-                      </md-button>
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-linkedin"></i>
-                      </md-button>
-                    </md-card-actions>
                   </md-card>
                 </div>
               </div>
@@ -187,47 +159,39 @@
                 <div class="team-player">
                   <md-card class="md-card-plain">
                     <div class="md-layout-item md-size-50 mx-auto">
-                      <img
-                        :src="teamImg3"
-                        alt="Thumbnail Image"
-                        class="img-raised rounded-circle img-fluid"
-                      />
+                      <a href="#" @click.prevent="click">
+                        <img
+                          :src="social_email"
+                          alt="Thumbnail Image"
+                          class="img-raised rounded-circle img-fluid social-img"
+                        />
+                      </a>
                     </div>
                     <h4 class="card-title">
-                      Kendall Jenner
+                      Email
                       <br />
-                      <small class="card-description text-muted">Model</small>
+                      <!-- <small class="card-description text-muted">Model</small> -->
                     </h4>
-
-                    <md-card-content>
-                      <p class="card-description">
-                        You can write here details about one of your team
-                        members. You can give more details about what they do.
-                        Feel free to add some <a href="#">links</a> for people
-                        to be able to follow them outside the site.
-                      </p>
-                    </md-card-content>
-
-                    <md-card-actions class="text-center">
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-twitter"></i>
-                      </md-button>
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-instagram"></i>
-                      </md-button>
-                      <md-button
-                        href="javascript:void(0)"
-                        class="md-just-icon md-simple"
-                      >
-                        <i class="fab fa-facebook-square"></i>
-                      </md-button>
-                    </md-card-actions>
+                  </md-card>
+                </div>
+              </div>
+              <div class="md-layout-item md-medium-size-33 md-small-size-100">
+                <div class="team-player">
+                  <md-card class="md-card-plain">
+                    <div class="md-layout-item md-size-50 mx-auto">
+                      <a href="#" @click.prevent="openPhoneModal">
+                        <img
+                          :src="phone_img"
+                          alt="Thumbnail Image"
+                          class="img-raised rounded-circle img-fluid social-img"
+                        />
+                      </a>
+                    </div>
+                    <h4 class="card-title">
+                      Phone
+                      <br />
+                      <!-- <small class="card-description text-muted">Model</small> -->
+                    </h4>
                   </md-card>
                 </div>
               </div>
@@ -237,74 +201,124 @@
       </div>
       <div class="section section-contacts">
         <div class="container">
-          <div class="md-layout">
-            <div class="md-layout-item md-size-66 md-xsmall-size-100 mx-auto">
-              <h2 class="text-center title">Work with us</h2>
-              <h4 class="text-center description">
-                Divide details about your product or agency work into parts.
-                Write a few lines about each one and contact us about any
-                further collaboration. We will responde get back to you in a
-                couple of hours.
-              </h4>
-              <form class="contact-form">
-                <div class="md-layout">
-                  <div class="md-layout-item md-size-50">
-                    <md-field>
-                      <label>Your Name</label>
-                      <md-input v-model="name" type="text"></md-input>
-                    </md-field>
-                  </div>
-                  <div class="md-layout-item md-size-50">
-                    <md-field>
-                      <label>Your Email</label>
-                      <md-input v-model="email" type="email"></md-input>
-                    </md-field>
-                  </div>
-                </div>
-                <md-field maxlength="5">
-                  <label>Your Message</label>
-                  <md-textarea v-model="message"></md-textarea>
-                </md-field>
-                <div class="md-layout">
-                  <div class="md-layout-item md-size-33 mx-auto text-center">
-                    <md-button class="md-success">Send Message</md-button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <Map></Map>
         </div>
       </div>
     </div>
+    <md-dialog :md-active.sync="showDialog" class="phoneDialog">
+      <md-dialog-title>ติดต่อเรา</md-dialog-title>
+      
+        <div class="md-layout md-gutter text-center">
+          <div class="md-layout-item">
+            <span class="md-display-1 text-dark">063-0964999</span>
+          </div>
+        </div>
+        <br>
+        <div class="md-layout md-gutter text-center">
+          <div class="md-layout-item">
+            <a href="tel:0630964999" data-rel="external">
+              <md-button class="md-raised md-success"><h4>โทรเลย</h4></md-button>
+            </a>
+          </div>
+        </div>
+      
+      <br />
+    </md-dialog>
   </div>
 </template>
 
 <script>
+import { VueFlux, FluxPagination, Transitions, FluxControls } from "vue-flux";
+import Map from "./components/Map";
 export default {
   bodyClass: "landing-page",
+  components: {
+    VueFlux,
+    FluxPagination,
+    FluxControls,
+    Map
+  },
   props: {
+    logo: {
+      type: String,
+      default: require("@/assets/img/logo-banner.jpg")
+    },
+    logo_only: {
+      type: String,
+      default: require("@/assets/img/logo-only.png")
+    },
+    logo_transparent: {
+      type: String,
+      default: require("@/assets/img/logo-cutout.png")
+    },
     header: {
       type: String,
-      default: require("@/assets/img/bg7.jpg")
+      default: require("@/assets/img/w3-min-s.jpg")
     },
-    teamImg1: {
+    social_line: {
       type: String,
-      default: require("@/assets/img/faces/avatar.jpg")
+      default: require("@/assets/img/line2.png")
     },
-    teamImg2: {
+    social_fb: {
       type: String,
-      default: require("@/assets/img/faces/christian.jpg")
+      default: require("@/assets/img/fb2.png")
     },
-    teamImg3: {
+    social_email: {
       type: String,
-      default: require("@/assets/img/faces/kendall.jpg")
+      default: require("@/assets/img/gmail.jpg")
+    },
+    phone_img: {
+      type: String,
+      default: require("@/assets/img/phone2.jpg")
+    },
+    product1: {
+      type: String,
+      default: require("@/assets/img/909973.LINE.jpg")
+    },
+    product2: {
+      type: String,
+      default: require("@/assets/img/909970.LINE.jpg")
+    },
+    product3: {
+      type: String,
+      default: require("@/assets/img/S__3325955.jpg")
+    },
+    bannerImage1: {
+      type: String,
+      default: require("@/assets/img/909975.LINE.jpg")
+    },
+    bannerImage2: {
+      type: String,
+      default: require("@/assets/img/909971.LINE.jpg")
+    },
+    bannerImage3: {
+      type: String,
+      default: require("@/assets/img/909973.LINE.jpg")
+    },
+    bannerImage4: {
+      type: String,
+      default: require("@/assets/img/909974.LINE.jpg")
     }
   },
   data() {
     return {
       name: null,
       email: null,
-      message: null
+      message: null,
+      fluxOptions: {
+        autoplay: true
+      },
+      showDialog: false,
+      fluxTransitions: {
+        transitionBook: Transitions.transitionSlide
+      },
+      fluxImages: [
+        this.bannerImage1,
+        this.bannerImage2,
+        this.bannerImage3,
+        this.product3,
+        this.bannerImage4
+      ]
     };
   },
   computed: {
@@ -312,6 +326,22 @@ export default {
       return {
         backgroundImage: `url(${this.header})`
       };
+    }
+  },
+  mounted(){
+  },
+  methods: {
+    click() {
+      console.log('button clicked')
+    },
+    openLinePage() {
+      window.open("http://line.me/ti/p/~063-096-4999", "_blank");
+    },
+    openFBPage() {
+      window.open("http://www.facebook.com/wannisa.thonekom", "_blank");
+    },
+    openPhoneModal() {
+      this.showDialog = true;
     }
   }
 };
@@ -328,5 +358,42 @@ export default {
 
 .md-has-textarea + .md-layout {
   margin-top: 15px;
+}
+
+.BannerCenter {
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+}
+#fluxBanner {
+  height: 30rem !important;
+}
+.social-img {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: 0.3s ease;
+  backface-visibility: hidden;
+}
+.social-img:hover {
+  transform: scale(1.1);
+}
+.logo {
+  width: 4rem;
+}
+#title1 {
+  color: aliceblue;
+}
+.headerBG {
+  height: 600px !important;
+}
+.phoneDialog {
+  width: 30% !important;
+  max-height: 240px !important;
+  min-height: 200px !important;
+}
+.md-card {
+  height: 90%;
 }
 </style>

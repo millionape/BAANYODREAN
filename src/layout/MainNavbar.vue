@@ -8,7 +8,10 @@
   >
     <div class="md-toolbar-row md-collapse-lateral">
       <div class="md-toolbar-section-start">
-        <h3 class="md-title">Vue Material Kit</h3>
+        <md-card-media class="logoTopNev">
+          <img :src="logo" alt="People" />
+        </md-card-media>
+        <a href="/"><h4 class="md-title">บ้านหยอดเหรียญ</h4></a>
       </div>
       <div class="md-toolbar-section-end">
         <md-button
@@ -39,22 +42,24 @@
                         class="md-button md-button-link md-white md-simple dropdown-toggle"
                         data-toggle="dropdown"
                       >
-                        <i class="material-icons">apps</i>
-                        <p>Components</p>
+                        <i class="material-icons">local_laundry_service</i>
+                        <h4>สินค้า</h4>
                       </md-button>
                       <ul class="dropdown-menu dropdown-with-icons">
                         <li>
-                          <a href="#/">
-                            <i class="material-icons">layers</i>
-                            <p>All Components</p>
+                          <a href="">
+                            <!-- <i class="material-icons">layers</i> -->
+                            <p>เครื่องซักผ้าหยอดเหรียญ</p>
                           </a>
                         </li>
                         <li>
-                          <a
-                            href="https://demos.creative-tim.com/vue-material-kit/documentation/"
-                          >
-                            <i class="material-icons">content_paste</i>
-                            <p>Documentation</p>
+                          <a href="">
+                            <p>ตู้น้ำดื่มหยอดเหรียญ</p>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="">
+                            <p>กล่องหยอดเหรียญอเนกประสงค์</p>
                           </a>
                         </li>
                       </ul>
@@ -94,7 +99,7 @@
                         data-toggle="dropdown"
                       >
                         <i class="material-icons">view_carousel</i>
-                        <p>Examples</p>
+                        <h4>บริการอื่นๆ</h4>
                       </md-button>
                       <ul class="dropdown-menu dropdown-with-icons">
                         <li>
@@ -121,41 +126,55 @@
                 </a>
               </li>
 
-              <md-list-item
-                href="https://twitter.com/CreativeTim"
-                target="_blank"
-              >
-                <i class="fab fa-twitter"></i>
-                <p class="hidden-lg">Twitter</p>
-                <md-tooltip md-direction="bottom"
-                  >Follow us on Twitter</md-tooltip
-                >
+              <md-list-item class="icons" href="" target="_blank" @click.prevent="openPhoneModal">
+                <i class="fa fa-phone-square"></i>
+                <p class="hidden-lg">Phone</p>
+                <md-tooltip md-direction="bottom">ติดต่อเราทางโทรศัพท์</md-tooltip>
               </md-list-item>
               <md-list-item
-                href="https://www.facebook.com/CreativeTim"
+                class="icons"
+                href=""
                 target="_blank"
+                @click.prevent="openFBPage"
               >
                 <i class="fab fa-facebook-square"></i>
                 <p class="hidden-lg">Facebook</p>
-                <md-tooltip md-direction="bottom"
-                  >Like us on Facebook</md-tooltip
-                >
+                <md-tooltip md-direction="bottom">ติดต่อเราทาง Facebook</md-tooltip>
               </md-list-item>
               <md-list-item
-                href="https://www.instagram.com/CreativeTimOfficial"
+                class="icons"
+                href=""
                 target="_blank"
+                @click.prevent="openLinePage"
               >
-                <i class="fab fa-instagram"></i>
-                <p class="hidden-lg">Instagram</p>
-                <md-tooltip md-direction="bottom"
-                  >Follow us on Instagram</md-tooltip
-                >
+                <i class="fab fa-line"></i>
+                <p class="hidden-lg">Line</p>
+                <md-tooltip md-direction="bottom">ติดต่อเราทาง Line</md-tooltip>
               </md-list-item>
             </md-list>
           </div>
         </div>
       </div>
     </div>
+    <md-dialog :md-active.sync="showDialog" class="phoneDialog">
+      <md-dialog-title>ติดต่อเรา</md-dialog-title>
+      
+        <div class="md-layout md-gutter text-center">
+          <div class="md-layout-item">
+            <span class="md-display-1 text-dark">063-0964999</span>
+          </div>
+        </div>
+        <br>
+        <div class="md-layout md-gutter text-center">
+          <div class="md-layout-item">
+            <a href="tel:0630964999" data-rel="external">
+              <md-button class="md-raised md-success"><h4>โทรเลย</h4></md-button>
+            </a>
+          </div>
+        </div>
+      
+      <br />
+    </md-dialog>
   </md-toolbar>
 </template>
 
@@ -179,9 +198,13 @@ export default {
     MobileMenu
   },
   props: {
+    logo: {
+      type: String,
+      default: require("@/assets/img/logo-only.png")
+    },
     type: {
       type: String,
-      default: "white",
+      default: "dark",
       validator(value) {
         return [
           "white",
@@ -202,7 +225,8 @@ export default {
   data() {
     return {
       extraNavClasses: "",
-      toggledClass: false
+      toggledClass: false,
+      showDialog: false,
     };
   },
   computed: {
@@ -212,6 +236,16 @@ export default {
     }
   },
   methods: {
+
+    openLinePage() {
+      window.open("http://line.me/ti/p/~063-096-4999", "_blank");
+    },
+    openFBPage() {
+      window.open("http://www.facebook.com/wannisa.thonekom", "_blank");
+    },
+    openPhoneModal() {
+      this.showDialog = true;
+    },
     bodyClick() {
       let bodyClick = document.getElementById("bodyClick");
 
@@ -265,3 +299,12 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.icons {
+  margin-top: 10px !important;
+}
+.logoTopNev {
+  width: 2rem;
+  margin-right: .5rem;
+}
+</style>
