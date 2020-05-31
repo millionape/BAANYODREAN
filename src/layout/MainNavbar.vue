@@ -67,26 +67,7 @@
                   </div>
                 </a>
               </li>
-
-              <md-list-item
-                href="https://demos.creative-tim.com/vue-material-kit/documentation/"
-                target="_blank"
-                v-if="showDownload"
-              >
-                <i class="material-icons">content_paste</i>
-                <p>Documentation</p>
-              </md-list-item>
-
-              <md-list-item
-                href="javascript:void(0)"
-                @click="scrollToElement()"
-                v-if="showDownload"
-              >
-                <i class="material-icons">cloud_download</i>
-                <p>Download</p>
-              </md-list-item>
-
-              <li class="md-list-item" v-else>
+              <li class="md-list-item">
                 <a
                   href="javascript:void(0)"
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
@@ -230,10 +211,10 @@ export default {
     };
   },
   computed: {
-    showDownload() {
-      const excludedRoutes = ["login", "landing", "profile"];
-      return excludedRoutes.every(r => r !== this.$route.name);
-    }
+    // showDownload() {
+    //   const excludedRoutes = ["login", "landing", "profile"];
+    //   return excludedRoutes.every(r => r !== this.$route.name);
+    // }
   },
   methods: {
 
@@ -267,6 +248,7 @@ export default {
       this.bodyClick();
     },
     handleScroll() {
+      if(this.$route.name !== "product"){
       let scrollValue =
         document.body.scrollTop || document.documentElement.scrollTop;
       let navbarColor = document.getElementById("toolbar");
@@ -279,6 +261,7 @@ export default {
           this.extraNavClasses = "";
           navbarColor.classList.add("md-transparent");
         }
+      }
       }
     },
     scrollListener() {
@@ -293,6 +276,9 @@ export default {
   },
   mounted() {
     document.addEventListener("scroll", this.scrollListener);
+    if(this.$route.name === "product"){
+      this.extraNavClasses = `md-dark`;
+    }
   },
   beforeDestroy() {
     document.removeEventListener("scroll", this.scrollListener);

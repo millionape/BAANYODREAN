@@ -6,7 +6,7 @@ import Login from "./views/Login.vue";
 import Profile from "./views/Profile.vue";
 import MainNavbar from "./layout/MainNavbar.vue";
 import MainFooter from "./layout/MainFooter.vue";
-
+import Product from "./views/Product.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -24,6 +24,16 @@ export default new Router({
       path: "/",
       name: "landing",
       components: { default: Landing, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: "black" }
+      }
+    },
+    {
+      path: "/product:dat",
+      name: "product",
+      components: { default: Product, header: MainNavbar, footer: MainFooter },
+      props: true,
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: "black" }

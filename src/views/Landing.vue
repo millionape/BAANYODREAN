@@ -1,27 +1,32 @@
 <template>
   <div class="wrapper">
-    <parallax class="section page-header header-filter headerBG" :style="headerStyle">
+    <parallax
+      class="section page-header header-filter headerBG"
+      :style="headerStyle"
+    >
       <div class="container">
         <div class="md-layout">
-          <div class="md-layout-item md-size-70 md-small-size-100 md-xsmall-size-130">
+          <div
+            class="md-layout-item md-size-70 md-small-size-100 md-xsmall-size-130"
+          >
             <span class="md-display-3" id="title1">บ้านหยอดเหรียญ</span>
 
             <h4>สินค้าดี ที่เดียวจบ ครบวงจร</h4>
             <br />
             <md-button
               v-scroll-to="{
-                  el: '#ourProduct',
-                  
-                  duration: 700,
-                  easing: 'ease-in-out',
-                  offset: -150,
-                  force: true,
-                  cancelable: true,
-                  onStart: onStart,
-                  onDone: onDone,
-                  onCancel: onCancel,
-                  x: false,
-                  y: true
+                el: '#ourProduct',
+
+                duration: 700,
+                easing: 'ease-in-out',
+                offset: -150,
+                force: true,
+                cancelable: true,
+                onStart: onStart,
+                onDone: onDone,
+                onCancel: onCancel,
+                x: false,
+                y: true,
               }"
               class="md-success md-lg"
               target="_blank"
@@ -36,15 +41,20 @@
       <div class="section">
         <div class="container">
           <div class="md-layout">
-            <div class="md-layout-item md-size-66 md-xsmall-size-100 mx-auto text-center">
+            <div
+              class="md-layout-item md-size-66 md-xsmall-size-100 mx-auto text-center"
+            >
               <!-- <h2 class="title text-center">บ้านหยอดเหรียญ</h2> -->
               <md-card-media id="logo1" class="BannerCenter">
                 <img :src="logo" alt="People" />
               </md-card-media>
               <br />
-              <span
-                class="md-subheading"
-              >เราเป็นผู้ให้บริการสินค้าตู้หยอดเหรียญต่างๆ เช่น เครื่องซักผ้าหยอดเหรียญ, ตู้กดน้ำดื่มหยอดเหรียญ, และโมดูลกล่องหยอดเหรียญที่มีคุณภาพสูง นึกถึงเครื่องหยอดเหรียญ นึกถึง "บ้านหยอดเหรียญ"</span>
+              <span class="md-subheading"
+                >เราเป็นผู้ให้บริการสินค้าตู้หยอดเหรียญต่างๆ เช่น
+                เครื่องซักผ้าหยอดเหรียญ, ตู้กดน้ำดื่มหยอดเหรียญ,
+                และโมดูลกล่องหยอดเหรียญที่มีคุณภาพสูง นึกถึงเครื่องหยอดเหรียญ
+                นึกถึง "บ้านหยอดเหรียญ"</span
+              >
             </div>
           </div>
           <br />
@@ -67,10 +77,17 @@
           <div class="features text-center">
             <h2 class="title text-center" id="ourProduct">สินค้าของเรา</h2>
             <div class="md-layout md-gutter">
-              <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+              <div
+                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
+                @click="gotoPage('washingMaschine')"
+              >
                 <md-card md-with-hover>
                   <md-card-media>
-                    <img :src="product1" alt="People" style="object-fit: contain;" />
+                    <img
+                      :src="product1"
+                      alt="People"
+                      style="object-fit: contain;"
+                    />
                   </md-card-media>
 
                   <md-card-content>
@@ -79,10 +96,16 @@
                   </md-card-content>
                 </md-card>
               </div>
-              <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+              <div
+                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
+              >
                 <md-card md-with-hover>
                   <md-card-media>
-                    <img :src="product2" alt="People" style="object-fit: contain;" />
+                    <img
+                      :src="product2"
+                      alt="People"
+                      style="object-fit: contain;"
+                    />
                   </md-card-media>
 
                   <md-card-content>
@@ -91,16 +114,27 @@
                   </md-card-content>
                 </md-card>
               </div>
-              <div class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+              <div
+                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
+              >
                 <md-card md-with-hover>
                   <md-card-media>
-                    <img :src="product3" alt="People" style="object-fit: contain;" />
+                    <img
+                      :src="product3"
+                      alt="People"
+                      style="object-fit: contain;"
+                    />
                   </md-card-media>
 
                   <md-card-content>
                     <!-- <div class="md-title">เครื่องหยอดเหรียญอเนกประสงค์</div> -->
                     <span class="md-title">เครื่องหยอดเหรียญอเนกประสงค์</span>
-                    <div class="md-subhead">คลิ๊กเพื่อดูสินค้าทั้งหมด</div>
+                    <div class="md-subhead">
+                      <router-link
+                        :to="{ name: 'product', params: { id: 1234 } }"
+                        >คลิ๊กเพื่อดูสินค้าทั้งหมด</router-link
+                      >
+                    </div>
                   </md-card-content>
                 </md-card>
               </div>
@@ -114,8 +148,8 @@
         <div class="container">
           <h2 class="title">ติดต่อเรา</h2>
           <div class="team">
-            <div class="md-layout">
-              <div class="md-layout-item md-medium-size-33 md-small-size-100">
+            <div class="md-layout text-center">
+              <div class="md-layout-item md-small-size-100">
                 <div class="team-player">
                   <md-card class="md-card-plain">
                     <div class="md-layout-item md-size-50 mx-auto">
@@ -135,7 +169,7 @@
                   </md-card>
                 </div>
               </div>
-              <div class="md-layout-item md-medium-size-33 md-small-size-100">
+              <div class="md-layout-item md-small-size-100">
                 <div class="team-player">
                   <md-card class="md-card-plain">
                     <div class="md-layout-item md-size-50 mx-auto">
@@ -155,7 +189,7 @@
                   </md-card>
                 </div>
               </div>
-              <div class="md-layout-item md-medium-size-33 md-small-size-100">
+              <div class="md-layout-item md-small-size-100">
                 <div class="team-player">
                   <md-card class="md-card-plain">
                     <div class="md-layout-item md-size-50 mx-auto">
@@ -175,7 +209,7 @@
                   </md-card>
                 </div>
               </div>
-              <div class="md-layout-item md-medium-size-33 md-small-size-100">
+              <div class="md-layout-item md-small-size-100">
                 <div class="team-player">
                   <md-card class="md-card-plain">
                     <div class="md-layout-item md-size-50 mx-auto">
@@ -207,21 +241,21 @@
     </div>
     <md-dialog :md-active.sync="showDialog" class="phoneDialog">
       <md-dialog-title>ติดต่อเรา</md-dialog-title>
-      
-        <div class="md-layout md-gutter text-center">
-          <div class="md-layout-item">
-            <span class="md-display-1 text-dark">063-0964999</span>
-          </div>
+
+      <div class="md-layout md-gutter text-center">
+        <div class="md-layout-item">
+          <span class="md-display-1 text-dark">063-0964999</span>
         </div>
-        <br>
-        <div class="md-layout md-gutter text-center">
-          <div class="md-layout-item">
-            <a href="tel:0630964999" data-rel="external">
-              <md-button class="md-raised md-success"><h4>โทรเลย</h4></md-button>
-            </a>
-          </div>
+      </div>
+      <br />
+      <div class="md-layout md-gutter text-center">
+        <div class="md-layout-item">
+          <a href="tel:0630964999" data-rel="external">
+            <md-button class="md-raised md-success"><h4>โทรเลย</h4></md-button>
+          </a>
         </div>
-      
+      </div>
+
       <br />
     </md-dialog>
   </div>
@@ -236,69 +270,7 @@ export default {
     VueFlux,
     FluxPagination,
     FluxControls,
-    Map
-  },
-  props: {
-    logo: {
-      type: String,
-      default: require("@/assets/img/logo-banner.jpg")
-    },
-    logo_only: {
-      type: String,
-      default: require("@/assets/img/logo-only.png")
-    },
-    logo_transparent: {
-      type: String,
-      default: require("@/assets/img/logo-cutout.png")
-    },
-    header: {
-      type: String,
-      default: require("@/assets/img/w3-min-s.jpg")
-    },
-    social_line: {
-      type: String,
-      default: require("@/assets/img/line2.png")
-    },
-    social_fb: {
-      type: String,
-      default: require("@/assets/img/fb2.png")
-    },
-    social_email: {
-      type: String,
-      default: require("@/assets/img/gmail.jpg")
-    },
-    phone_img: {
-      type: String,
-      default: require("@/assets/img/phone2.jpg")
-    },
-    product1: {
-      type: String,
-      default: require("@/assets/img/909973.LINE.jpg")
-    },
-    product2: {
-      type: String,
-      default: require("@/assets/img/909970.LINE.jpg")
-    },
-    product3: {
-      type: String,
-      default: require("@/assets/img/S__3325955.jpg")
-    },
-    bannerImage1: {
-      type: String,
-      default: require("@/assets/img/909975.LINE.jpg")
-    },
-    bannerImage2: {
-      type: String,
-      default: require("@/assets/img/909971.LINE.jpg")
-    },
-    bannerImage3: {
-      type: String,
-      default: require("@/assets/img/909973.LINE.jpg")
-    },
-    bannerImage4: {
-      type: String,
-      default: require("@/assets/img/909974.LINE.jpg")
-    }
+    Map,
   },
   data() {
     return {
@@ -306,33 +278,40 @@ export default {
       email: null,
       message: null,
       fluxOptions: {
-        autoplay: true
+        autoplay: true,
       },
       showDialog: false,
       fluxTransitions: {
-        transitionBook: Transitions.transitionSlide
+        transitionBook: Transitions.transitionSlide,
       },
       fluxImages: [
         this.bannerImage1,
         this.bannerImage2,
         this.bannerImage3,
         this.product3,
-        this.bannerImage4
-      ]
+        this.bannerImage4,
+      ],
     };
   },
   computed: {
     headerStyle() {
       return {
-        backgroundImage: `url(${this.header})`
+        backgroundImage: `url(${this.header})`,
       };
-    }
+    },
   },
-  mounted(){
-  },
+  mounted() {},
   methods: {
+    gotoPage(page) {
+      if (page === "washingMaschine") {
+        this.$router.push({ name: "product", params: { dat: {
+          title: "เครื่องซักผ้าหยอดเหรียญ(ฝาหน้า)",
+          image: '@/assets/img/909973.LINE.jpg'
+        } } });
+      }
+    },
     click() {
-      console.log('button clicked')
+      console.log("button clicked");
     },
     openLinePage() {
       window.open("http://line.me/ti/p/~063-096-4999", "_blank");
@@ -342,8 +321,70 @@ export default {
     },
     openPhoneModal() {
       this.showDialog = true;
-    }
-  }
+    },
+  },
+  props: {
+    logo: {
+      type: String,
+      default: require("@/assets/img/logo-banner.jpg"),
+    },
+    logo_only: {
+      type: String,
+      default: require("@/assets/img/logo-only.png"),
+    },
+    logo_transparent: {
+      type: String,
+      default: require("@/assets/img/logo-cutout.png"),
+    },
+    header: {
+      type: String,
+      default: require("@/assets/img/w3-min-s.jpg"),
+    },
+    social_line: {
+      type: String,
+      default: require("@/assets/img/line2.png"),
+    },
+    social_fb: {
+      type: String,
+      default: require("@/assets/img/fb2.png"),
+    },
+    social_email: {
+      type: String,
+      default: require("@/assets/img/gmail.jpg"),
+    },
+    phone_img: {
+      type: String,
+      default: require("@/assets/img/phone2.jpg"),
+    },
+    product1: {
+      type: String,
+      default: require("@/assets/img/909973.LINE.jpg"),
+    },
+    product2: {
+      type: String,
+      default: require("@/assets/img/909970.LINE.jpg"),
+    },
+    product3: {
+      type: String,
+      default: require("@/assets/img/S__3325955.jpg"),
+    },
+    bannerImage1: {
+      type: String,
+      default: require("@/assets/img/909975.LINE.jpg"),
+    },
+    bannerImage2: {
+      type: String,
+      default: require("@/assets/img/909971.LINE.jpg"),
+    },
+    bannerImage3: {
+      type: String,
+      default: require("@/assets/img/909973.LINE.jpg"),
+    },
+    bannerImage4: {
+      type: String,
+      default: require("@/assets/img/909974.LINE.jpg"),
+    },
+  },
 };
 </script>
 
