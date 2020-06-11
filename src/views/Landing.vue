@@ -74,67 +74,28 @@
           <br />
           <br />
           <md-divider></md-divider>
-          <div class="features text-center">
+          <div class="features text-center mx-auto">
             <h2 class="title text-center" id="ourProduct">สินค้าของเรา</h2>
-            <div class="md-layout md-gutter">
+            <div class="md-layout md-gutter text-center mx-auto">
+              \
               <div
-                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
-                @click="gotoPage('washingMaschine')"
+                class="md-layout-item md-small-size-50 md-xsmall-size-100"
+                v-for="product in productData"
+                :key="product.productName"
+                @click="gotoPage(product.id)"
               >
                 <md-card md-with-hover>
                   <md-card-media>
                     <img
-                      :src="product1"
+                      :src="getIconPath(product.cardImage)"
                       alt="People"
                       style="object-fit: contain;"
                     />
                   </md-card-media>
 
                   <md-card-content>
-                    <div class="md-title">เครื่องซักผ้าหยอดเหรียญ</div>
+                    <div class="md-title">{{ product.productName }}</div>
                     <div class="md-subhead">คลิ๊กเพื่อดูสินค้าทังหมด</div>
-                  </md-card-content>
-                </md-card>
-              </div>
-              <div
-                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
-              >
-                <md-card md-with-hover>
-                  <md-card-media>
-                    <img
-                      :src="product2"
-                      alt="People"
-                      style="object-fit: contain;"
-                    />
-                  </md-card-media>
-
-                  <md-card-content>
-                    <div class="md-title">ตู้กดน้ำหยอดเหรียญ</div>
-                    <div class="md-subhead">คลิ๊กเพื่อดูสินค้าทังหมด</div>
-                  </md-card-content>
-                </md-card>
-              </div>
-              <div
-                class="md-layout-item md-medium-size-33 md-small-size-50 md-xsmall-size-100"
-              >
-                <md-card md-with-hover>
-                  <md-card-media>
-                    <img
-                      :src="product3"
-                      alt="People"
-                      style="object-fit: contain;"
-                    />
-                  </md-card-media>
-
-                  <md-card-content>
-                    <!-- <div class="md-title">เครื่องหยอดเหรียญอเนกประสงค์</div> -->
-                    <span class="md-title">เครื่องหยอดเหรียญอเนกประสงค์</span>
-                    <div class="md-subhead">
-                      <router-link
-                        :to="{ name: 'product', params: { id: 1234 } }"
-                        >คลิ๊กเพื่อดูสินค้าทั้งหมด</router-link
-                      >
-                    </div>
                   </md-card-content>
                 </md-card>
               </div>
@@ -233,11 +194,11 @@
           </div>
         </div>
       </div>
-      <div class="section section-contacts">
+      <!-- <div class="section section-contacts">
         <div class="container">
           <Map></Map>
         </div>
-      </div>
+      </div> -->
     </div>
     <md-dialog :md-active.sync="showDialog" class="phoneDialog">
       <md-dialog-title>ติดต่อเรา</md-dialog-title>
@@ -263,17 +224,32 @@
 
 <script>
 import { VueFlux, FluxPagination, Transitions, FluxControls } from "vue-flux";
-import Map from "./components/Map";
+import product_data from "../productData/data.json";
+// import Map from "./components/Map";
 export default {
+  metaInfo: {
+    // Children can override the title.
+    title: 'บ้านหยอดเหรียญ',
+    // Result: My Page Title ← My Site
+    // If a child changes the title to "My Other Page Title",
+    // it will become: My Other Page Title ← My Site
+    titleTemplate: '%s ← บ้านหยอดเหรียญ',
+    // Define meta tags here.
+    meta: [
+      {"http-equiv": 'Content-Type', content: 'text/html; charset=utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {name: 'description', content: 'บ้านหยอดเหรียญ'}
+    ]
+  },
   bodyClass: "landing-page",
   components: {
     VueFlux,
     FluxPagination,
     FluxControls,
-    Map,
   },
   data() {
     return {
+      productData: product_data.products,
       name: null,
       email: null,
       message: null,
@@ -290,6 +266,9 @@ export default {
         this.bannerImage3,
         this.product3,
         this.bannerImage4,
+        this.bannerImage5,
+        this.bannerImage6,
+        this.bannerImage7,
       ],
     };
   },
@@ -302,19 +281,23 @@ export default {
   },
   mounted() {},
   methods: {
-    gotoPage(page) {
-      if (page === "washingMaschine") {
-        this.$router.push({ name: "product", params: { dat: {
-          title: "เครื่องซักผ้าหยอดเหรียญ(ฝาหน้า)",
-          image: '@/assets/img/909973.LINE.jpg'
-        } } });
+    getIconPath(imgName) {
+      return imgName ? require(`../assets/img/${imgName}`) : "";
+    },
+    gotoPage(productId) {
+      for (var product of this.productData) {
+        if (product.id === productId) {
+          this.$router.push({
+            name: "product",
+            params: {
+              productData: product,
+            },
+          });
+        }
       }
     },
-    click() {
-      console.log("button clicked");
-    },
     openLinePage() {
-      window.open("http://line.me/ti/p/~063-096-4999", "_blank");
+      window.open("http://line.me/ti/p/~0630964999", "_blank");
     },
     openFBPage() {
       window.open("http://www.facebook.com/wannisa.thonekom", "_blank");
@@ -322,6 +305,8 @@ export default {
     openPhoneModal() {
       this.showDialog = true;
     },
+  },
+  beforeMount() {
   },
   props: {
     logo: {
@@ -384,6 +369,18 @@ export default {
       type: String,
       default: require("@/assets/img/909974.LINE.jpg"),
     },
+    bannerImage5: {
+      type: String,
+      default: require("@/assets/img/S__4145158.jpg"),
+    },
+    bannerImage6: {
+      type: String,
+      default: require("@/assets/img/S__4145159.jpg"),
+    },
+    bannerImage7: {
+      type: String,
+      default: require("@/assets/img/S__4145160.jpg"),
+    },
   },
 };
 </script>
@@ -430,9 +427,11 @@ export default {
   height: 600px !important;
 }
 .phoneDialog {
-  width: 30% !important;
-  max-height: 240px !important;
-  min-height: 200px !important;
+  margin-top: 10rem;
+  max-height: 270px !important;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  min-height: 180px !important;
 }
 .md-card {
   height: 90%;

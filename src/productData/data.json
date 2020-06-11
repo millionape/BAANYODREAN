@@ -1,0 +1,116 @@
+{
+    "products": [{
+            "productName": "เครื่องซักผ้าหยอดเหรียญ (ฝาหน้า)",
+            "cardImage": "S__3817481.jpg",
+            "id": 1,
+            "sliderImage": [
+                "beko3.jpg",
+                "909982.LINE.jpg",
+                "909983.LINE.jpg",
+                "beko4.jpg",
+                "909984.LINE.jpg"
+            ],
+            "descriptions": "เรามีเครื่องซักผ้าหยอดเหรียญฝาหน้าหลายรุ่นหลายแบบให้เหมาะกับขนาดธุรกิจต่างๆ ไม่ว่าจะธุรกิจขนาดเล็ก จนไปถึงธุรกิจขนาดใหญ่",
+            "subProducts": [{
+                    "productName": "เครื่องซักผ้ายี่ห้อ Samsang Potamus",
+                    "description": "เครื่องซักผ้าฝาหน้า ขนาด 17 กิโลกรัม 3โปรแกรมการซัก ดีไซน์มันสมัย",
+                    "images": [
+                        "potamus1.jpg",
+                        "potamus2.jpg",
+                        "potamus3.jpg",
+                        "potamus4.jpg"
+                    ]
+                },
+                {
+                    "productName": "เครื่องซักผ้าพร้อมตู้อบยี่ห้อเบโก้",
+                    "description": "มีบริการหลังการขาย รับประกัน1ปี ดูแลตลอดอายุการใช้งาน",
+                    "images": [
+                        "beko1.jpg",
+                        "beko2.jpg",
+                        "beko3.jpg",
+                        "beko4.jpg",
+                        "beko5.jpg"
+                    ]
+                }
+            ]
+        },
+        {
+            "productName": "เครื่องซักผ้าหยอดเหรียญ (ฝาบน)",
+            "cardImage": "909973.LINE.jpg",
+            "id": 2,
+            "sliderImage": [
+                "top1.jpg",
+                "top2.jpg",
+                "top3.jpg",
+                "top4.jpg",
+                "top5.jpg"
+            ],
+            "descriptions": "เรามีเครื่องซักผ้าหยอดเหรียญฝาหน้าหลายรุ่นหลายแบบให้เหมาะกับขนาดธุรกิจต่างๆ ไม่ว่าจะธุรกิจขนาดเล็ก จนไปถึงธุรกิจขนาดใหญ่",
+            "subProducts": [{
+                "productName": "เครื่องซักผ้ายี่ห้อ samsang",
+                "description": "เครื่องซักผ้า Samsung ฝาบนมี2รุ่นค่ะ 1) Samsung 10kg พร้อมกล่องหยอดเหรียญ 2) Samsung 13kg พร้อมกล่องหยอดเหรียญ",
+                "images": [
+                    "top3.jpg",
+                    "top4.jpg",
+                    "top2.jpg",
+                    "top5.jpg",
+                    "top1.jpg"
+                ]
+            }]
+        },
+        {
+            "productName": "ตู้น้ำดื่มหยอดเหรียญ",
+            "cardImage": "909970.LINE.jpg",
+            "id": 3,
+            "sliderImage": [
+                "water1.jpg",
+                "water2.jpg",
+                "water3.jpg",
+                "water4.jpg",
+                "water5.jpg"
+            ],
+            "descriptions": "ตู้น้ำดื่มหยอดเหรียญของเรา สะอาด ปลอดภัย ได้มาตรฐาน เหมาะสำหรับ คอนโด หอพัก ห้องเช่า และ อื่นๆ",
+            "subProducts": [{
+                "productName": "เครื่องกดน้ำดื่มหยอดเหรียญ",
+                "description": "ตู้น้ำดื่มหยอดเหรียญระบบ RO ความจุ 200 ลิตร ระบบกรองน้ำ 9 ขั้นตอน ขนาดของตู้ สูง 185 กว้าง ยาว 80*80",
+                "images": [
+                    "water6.jpg",
+                    "water7.jpg",
+                    "water1.jpg",
+                    "water2.jpg",
+                    "water3.jpg",
+                    "water4.jpg"
+                ]
+            }]
+        },
+        {
+            "productName": "กล่องหยอดเหรียญเอนกประสงค์",
+            "cardImage": "S__3325955.jpg",
+            "id": 4,
+            "sliderImage": [
+                "coin1.jpg",
+                "coin2.jpg",
+                "coin3.jpg",
+                "coin4.jpg",
+                "coin5.jpg",
+                "coin6.jpg",
+                "coin7.jpg"
+            ],
+            "descriptions": "เรามีกล่องหยอดเหรียญเอนกประสงค์สำหรับเครื่องซักผ้าทุกรุ่นทุกยี่ห้อ ในราคาย่อมเยาว์",
+            "subProducts": [{
+                "productName": "กล่องหยอดเหรียญเอนกประสงค์",
+                "description": "กล่องหยอดเหรียญจะทำหน้าที่ ควบคุมหรือ การสั่งงานให้เครื่องซักผ้าหยอดเหรียญ",
+                "images": [
+                    "coin6.jpg",
+                    "coin3.jpg",
+                    "coin4.jpg",
+                    "coin5.jpg",
+                    "coin1.jpg",
+                    "coin2.jpg",
+                    "coin7.jpg"
+                ]
+            }]
+        }
+
+    ]
+}

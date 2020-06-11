@@ -15,33 +15,38 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
+import Meta from 'vue-meta';
 
 
 import MaterialKit from "./plugins/material-kit";
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 // // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap-vue/dist/bootstrap-vue.css';
+// import 'vue-image-lightbox/dist/vue-image-lightbox.min.css'
 
 import VueMaterial from 'vue-material';
 import 'vue-material/dist/vue-material.min.css';
 import VueCarousel from '@chenfengyuan/vue-carousel';
 import vueScrollto from 'vue-scrollto';
-import * as VueGoogleMaps from "vue2-google-maps";
+// import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.config.productionTip = false;
-
+// import VueGallerySlideshow from "vue-gallery-slideshow";
+Vue.use(Meta);
 Vue.use(MaterialKit);
+// Vue.use(VueGallerySlideshow);
 // Vue.use(BootstrapVue);
 // Vue.use(IconsPlugin);
 Vue.use(VueMaterial);
 Vue.use(VueCarousel);
 Vue.use(vueScrollto);
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: "AIzaSyCX3652GkMCGxDdPL8eaJzduvnmQGMUvZc",
-    libraries: "places" // necessary for places input
-  }
-});
+
+// Vue.use(VueGoogleMaps, {
+//   load: {
+//     key: "AIzaSyCX3652GkMCGxDdPL8eaJzduvnmQGMUvZc",
+//     libraries: "places" // necessary for places input
+//   }
+// });
 
 const NavbarStore = {
   showNavbar: false

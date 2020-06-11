@@ -10,6 +10,7 @@ import Product from "./views/Product.vue";
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: "/index",
@@ -30,7 +31,7 @@ export default new Router({
       }
     },
     {
-      path: "/product:dat",
+      path: "/product:productData",
       name: "product",
       components: { default: Product, header: MainNavbar, footer: MainFooter },
       props: true,

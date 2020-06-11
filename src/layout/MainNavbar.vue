@@ -47,18 +47,24 @@
                       </md-button>
                       <ul class="dropdown-menu dropdown-with-icons">
                         <li>
-                          <a href="">
+                          <a href="" @click.prevent="gotoPage(1)">
                             <!-- <i class="material-icons">layers</i> -->
-                            <p>เครื่องซักผ้าหยอดเหรียญ</p>
+                            <p>เครื่องซักผ้าหยอดเหรียญ ฝาหน้า</p>
                           </a>
                         </li>
                         <li>
-                          <a href="">
+                          <a href="" @click.prevent="gotoPage(2)">
+                            <!-- <i class="material-icons">layers</i> -->
+                            <p>เครื่องซักผ้าหยอดเหรียญ ฝาบน</p>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="" @click.prevent="gotoPage(3)">
                             <p>ตู้น้ำดื่มหยอดเหรียญ</p>
                           </a>
                         </li>
                         <li>
-                          <a href="">
+                          <a href="" @click.prevent="gotoPage(4)">
                             <p>กล่องหยอดเหรียญอเนกประสงค์</p>
                           </a>
                         </li>
@@ -67,7 +73,15 @@
                   </div>
                 </a>
               </li>
-              <li class="md-list-item">
+              <!-- <li class="md-list-item contact">
+                <div class="emptyDiv">
+
+                </div>
+              </li> -->
+              <!-- <li class="md-list-item contact">
+                <h4>ติดต่อเรา</h4>
+              </li> -->
+              <!-- <li class="md-list-item">
                 <a
                   href="javascript:void(0)"
                   class="md-list-item-router md-list-item-container md-button-clean dropdown"
@@ -105,7 +119,7 @@
                     </drop-down>
                   </div>
                 </a>
-              </li>
+              </li> -->
 
               <md-list-item class="icons" href="" target="_blank" @click.prevent="openPhoneModal">
                 <i class="fa fa-phone-square"></i>
@@ -174,7 +188,22 @@ function resizeThrottler(actualResizeHandler) {
 }
 
 import MobileMenu from "@/layout/MobileMenu";
+import product_data from "../productData/data.json";
 export default {
+  metaInfo: {
+    // Children can override the title.
+    title: 'บ้านหยอดเหรียญ',
+    // Result: My Page Title ← My Site
+    // If a child changes the title to "My Other Page Title",
+    // it will become: My Other Page Title ← My Site
+    titleTemplate: '%s ← บ้านหยอดเหรียญ',
+    // Define meta tags here.
+    meta: [
+      {"http-equiv": 'Content-Type', content: 'text/html; charset=utf-8'},
+      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+      {name: 'description', content: 'บ้านหยอดเหรียญ'}
+    ]
+  },
   components: {
     MobileMenu
   },
@@ -205,6 +234,7 @@ export default {
   },
   data() {
     return {
+      productData: product_data.products,
       extraNavClasses: "",
       toggledClass: false,
       showDialog: false,
@@ -217,7 +247,18 @@ export default {
     // }
   },
   methods: {
-
+    gotoPage(productId) {
+      for (var product of this.productData) {
+        if (product.id === productId) {
+          this.$router.push({
+            name: "product",
+            params: {
+              productData: product,
+            },
+          });
+        }
+      }
+    },
     openLinePage() {
       window.open("http://line.me/ti/p/~063-096-4999", "_blank");
     },
@@ -248,12 +289,14 @@ export default {
       this.bodyClick();
     },
     handleScroll() {
-      if(this.$route.name !== "product"){
+      
       let scrollValue =
         document.body.scrollTop || document.documentElement.scrollTop;
+      console.log('scrollValue :',scrollValue,this.colorOnScroll);
       let navbarColor = document.getElementById("toolbar");
       this.currentScrollValue = scrollValue;
-      if (this.colorOnScroll > 0 && scrollValue > this.colorOnScroll) {
+      // if(this.$route.name !== "product"){this.colorOnScroll = this.colorOnScroll-300}
+      if (this.colorOnScroll > 0 && scrollValue > (this.colorOnScroll)) {
         this.extraNavClasses = `md-${this.type}`;
         navbarColor.classList.remove("md-transparent");
       } else {
@@ -262,7 +305,7 @@ export default {
           navbarColor.classList.add("md-transparent");
         }
       }
-      }
+      
     },
     scrollListener() {
       resizeThrottler(this.handleScroll);
@@ -292,5 +335,11 @@ export default {
 .logoTopNev {
   width: 2rem;
   margin-right: .5rem;
+}
+.contact {
+  margin-top: .7rem;
+}
+.emptyDiv {
+  width: .5rem;
 }
 </style>
