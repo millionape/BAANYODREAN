@@ -148,7 +148,7 @@
 #navigation .md-dark,
 #menu,
 #menu .md-primary {
-  z-index: 9999;
+  z-index: 8000;
   position: relative;
 }
 

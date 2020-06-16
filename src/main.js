@@ -17,6 +17,7 @@ import App from "./App.vue";
 import router from "./router";
 import Meta from 'vue-meta';
 
+// import VueLazyload from "vue-lazyload";
 
 import MaterialKit from "./plugins/material-kit";
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
@@ -31,6 +32,8 @@ import vueScrollto from 'vue-scrollto';
 // import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.config.productionTip = false;
+Vue.config.performance = true;
+
 // import VueGallerySlideshow from "vue-gallery-slideshow";
 Vue.use(Meta);
 Vue.use(MaterialKit);
@@ -40,13 +43,8 @@ Vue.use(MaterialKit);
 Vue.use(VueMaterial);
 Vue.use(VueCarousel);
 Vue.use(vueScrollto);
+// Vue.use(VueLazyload);
 
-// Vue.use(VueGoogleMaps, {
-//   load: {
-//     key: "AIzaSyCX3652GkMCGxDdPL8eaJzduvnmQGMUvZc",
-//     libraries: "places" // necessary for places input
-//   }
-// });
 
 const NavbarStore = {
   showNavbar: false
@@ -60,7 +58,9 @@ Vue.mixin({
   }
 });
 
-new Vue({
+const app = new Vue({
   router,
   render: h => h(App)
-}).$mount("#app");
+});
+
+app.$mount('#app');

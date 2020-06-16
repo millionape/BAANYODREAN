@@ -6,12 +6,12 @@
           <div class="md-layout-item">
             <md-card class="contentCard">
               <md-card-content class="text-center">
-                <br>
+                <br />
                 <span class="md-display-1 head-t">{{
                   product.productName
                 }}</span>
-                <br>
-                <br>
+                <br />
+                <br />
               </md-card-content>
               <md-divider class=""></md-divider>
               <div class="cardCT">
@@ -63,16 +63,21 @@
                       <div
                         class="md-layout-item md-medium-size-33 md-small-size-100 md-xsmall-size-100"
                       >
-                        <vue-flux
+                        <!-- <vue-flux
                           id="imgViewerProduct"
                           :options="fluxOptions"
-                          :images="getImageArray(product.images)"
+                          :images="getFirstImageArray(product.images)"
                           :transitions="fluxTransitions"
                           ref="slider"
                         >
                           <flux-pagination slot="pagination"></flux-pagination>
                           <flux-controls slot="controls"></flux-controls>
-                        </vue-flux>
+                        </vue-flux> -->
+                        <img
+                          :src="getIconPath(product.images[0])"
+                          alt="People"
+                          style="object-fit: contain;"
+                        />
                       </div>
                       <!-- <div
                         class="md-layout-item md-medium-size-33 md-small-size-100 md-xsmall-size-100"
@@ -87,7 +92,7 @@
                         class="md-layout-item md-medium-size-50 md-small-size-100 md-xsmall-size-100 productDes"
                       >
                         <div>
-                          <h3 class="productDes">รายละเอียดสินค้า</h3>
+                          <h2 class="productDes">รายละเอียดสินค้า</h2>
                           <div class="productDes">
                             <p>{{ product.description }}</p>
                           </div>
@@ -97,29 +102,45 @@
                         class="md-layout-item md-medium-size-33 md-small-size-100 md-xsmall-size-100"
                       ></div>
                     </div>
-                    <!-- <vue-picture-swipe class="imgShow" :items="items"></vue-picture-swipe> -->
+                    <br />
+                    <md-divider></md-divider>
 
-                    <!-- <div class="text-right">
-                      <md-button class="md-raised md-primary contactBtn">Primary</md-button>
-                    </div> -->
-                    <!-- <div id="app">
-                      <img
-                        class="image"
-                        v-for="(image, i) in images"
-                        :src="image"
-                        @click="onClick(i)"
-                      />
-                      <vue-gallery-slideshow
-                        :images="images"
+                    <span class="md-caption" id="caption">รูปภาพสินค้า</span>
+                    <div id="gall">
+                      <gallery
+                        :id="`gwee-${product.productName}-${product.id}`"
+                        :images="getImageArray(product.images)"
                         :index="index"
                         @close="index = null"
-                      ></vue-gallery-slideshow>
-                    </div> -->
+                      ></gallery>
+                      <a href="#" @click.prevent="imgclicked">
+                        <div
+                          class="image"
+                          v-for="(image, imageIndex) in getImageArray(
+                            product.images
+                          )"
+                          :key="imageIndex"
+                          @click="index = imageIndex"
+                          :style="{
+                            backgroundImage: 'url(' + image + ')',
+                            width: '130px',
+                            height: '100px',
+                          }"
+                        ></div>
+                      </a>
+                    </div>
                   </md-card>
                 </div>
                 <div class="md-layout"></div>
               </div>
               <div class="team">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <h3 class="text-center">สอบถามราคา หรือ ติดต่อเราได้ที่</h3>
                 <div class="md-layout text-center">
                   <div class="md-layout-item md-small-size-50">
@@ -190,7 +211,7 @@
                             <img
                               :src="phone_img"
                               alt="Thumbnail Image"
-                              class="img-raised rounded-circle img-fluid social-img"
+                              class="rounded-circle"
                             />
                           </a>
                         </div>
@@ -234,27 +255,84 @@
 <script>
 import { LoginCard } from "@/components";
 import { VueFlux, FluxPagination, Transitions, FluxControls } from "vue-flux";
+import VueGallery from "vue-gallery";
+
 // import VueGallerySlideshow from "vue-gallery-slideshow";
 export default {
   metaInfo: {
     // Children can override the title.
-    title: 'บ้านหยอดเหรียญ',
+    title: "บ้านหยอดเหรียญ",
     // Result: My Page Title ← My Site
     // If a child changes the title to "My Other Page Title",
     // it will become: My Other Page Title ← My Site
-    titleTemplate: '%s ← บ้านหยอดเหรียญ',
+    titleTemplate: "%s",
     // Define meta tags here.
     meta: [
-      {"http-equiv": 'Content-Type', content: 'text/html; charset=utf-8'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {name: 'description', content: 'บ้านหยอดเหรียญ'}
-    ]
+      { "http-equiv": "Content-Type", content: "text/html; charset=utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "description", content: "บ้านหยอดเหรียญ" },
+      { name: "dc.title", content: "บ้านหยอดเหรียญ" },
+      {
+        name: "dc.description",
+        content:
+          "บ้านหยอดเหรียญ จำหน่าย ติดตั้ง และซ่อมบำรุง เครืองหยอดเหรียญ กล่องหยอดเหรียญ ด้วยทีมงานที่มีประสปการณ์ กล่องหยอดเหรียญได้มาตรฐาน คุ้มค่าในการลงทุน มีความทนทานสูง สามารถติดตั้งได้กับเครื่องใช้ไฟฟ้าได้หลายชนิดเช่น",
+      },
+      { name: "dc.relation", content: "https://บ้านหยอดเหรียญ.com/" },
+      { name: "dc.source", content: "https://บ้านหยอดเหรียญ.com/" },
+      { name: "dc.language", content: "th" },
+      {
+        name: "description",
+        content:
+          "บ้านหยอดเหรียญ จำหน่าย ติดตั้ง และซ่อมบำรุง เครืองหยอดเหรียญ กล่องหยอดเหรียญ ด้วยทีมงานที่มีประสปการณ์ กล่องหยอดเหรียญได้มาตรฐาน คุ้มค่าในการลงทุน มีความทนทานสูง สามารถติดตั้งได้กับเครื่องใช้ไฟฟ้าได้หลายชนิดเช่น",
+      },
+      {
+        name: "robots",
+        content:
+          "max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+      },
+      { name: "og:url", content: "https://บ้านหยอดเหรียญ.com/" },
+      { name: "og:site_name", content: "บ้านหยอดเหรียญ.com" },
+      { name: "og:locale", content: "th" },
+      { name: "og:type", content: "website" },
+      { name: "og:title", content: "บ้านหยอดเหรียญ" },
+      {
+        name: "og:description",
+        content:
+          "บ้านหยอดเหรียญ จำหน่าย ติดตั้ง และซ่อมบำรุง เครืองหยอดเหรียญ กล่องหยอดเหรียญ ด้วยทีมงานที่มีประสปการณ์ กล่องหยอดเหรียญได้มาตรฐาน คุ้มค่าในการลงทุน มีความทนทานสูง สามารถติดตั้งได้กับเครื่องใช้ไฟฟ้าได้หลายชนิดเช่น",
+      },
+      {
+        name: "og:image",
+        content:
+          "https://xn--e3cnod5bbg5dcs5c3bxj1e.com/img/S__3817481.cf8e4407.jpg",
+      },
+      {
+        name: "og:image:secure_url",
+        content:
+          "https://xn--e3cnod5bbg5dcs5c3bxj1e.com/img/909973.LINE.9c753bce.jpg",
+      },
+      { name: "og:image:width", content: "320" },
+      { name: "og:image:height", content: "410" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "บ้านหยอดเหรียญ พีระเซอร์วิส" },
+      {
+        name: "twitter:description",
+        content:
+          "บ้านหยอดเหรียญ พีระเซอร์วิส จำหน่าย ติดตั้ง และซ่อมบำรุง เครืองหยอดเหรียญ กล่องหยอดเหรียญ ด้วยทีมงานที่มีประสปการณ์ กล่องหยอดเหรียญได้มาตรฐาน คุ้มค่าในการลงทุน มีความทนทานสูง สามารถติดตั้งได้กับเครื่องใช้ไฟฟ้าได้หลายชนิดเช่น",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://xn--e3cnod5bbg5dcs5c3bxj1e.com/img/S__3325955.de5647c0.jpg",
+      },
+      // Often the same as your meta description, but not always.
+    ],
+    link: [{ rel: "canonical", href: "https://บ้านหยอดเหรียญ.com" }],
   },
   components: {
     VueFlux,
     FluxPagination,
     FluxControls,
-    
+    gallery: VueGallery,
   },
   bodyClass: "product-page",
   data() {
@@ -273,18 +351,12 @@ export default {
         transitionBook: Transitions.transitionSlide,
       },
       images: [
-        "https://placekitten.com/801/800",
-        "https://placekitten.com/802/800",
-        "https://placekitten.com/803/800",
-        "https://placekitten.com/804/800",
-        "https://placekitten.com/805/800",
-        "https://placekitten.com/806/800",
-        "https://placekitten.com/807/800",
-        "https://placekitten.com/808/800",
-        "https://placekitten.com/809/800",
-        "https://placekitten.com/810/800",
+        "https://dummyimage.com/800/ffffff/000000",
+        "https://dummyimage.com/1600/ffffff/000000",
+        "https://dummyimage.com/1280/000000/ffffff",
+        "https://dummyimage.com/400/000000/ffffff",
       ],
-      index: 0,
+      index: null,
     };
   },
   props: {
@@ -339,6 +411,9 @@ export default {
       }
       return tmp_arr;
     },
+    getIconPath(imgName) {
+      return imgName ? require(`../assets/img/${imgName}`) : "";
+    },
     getImages() {
       var tmp_arr = [];
       var imgsPath = this.$route.params.productData.sliderImage;
@@ -353,6 +428,9 @@ export default {
     openFBPage() {
       window.open("http://www.facebook.com/wannisa.thonekom", "_blank");
     },
+    imgclicked(){
+      
+    }
   },
   computed: {
     headerStyle() {
@@ -369,6 +447,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+p {
+  font-size: 1.3rem;
+}
 // @import 'vue-image-lightbox/dist/vue-image-lightbox.min.css';
 // .imgShow {
 //   height: 500px !important;
@@ -483,4 +564,22 @@ export default {
   margin-top: 0.7rem;
   margin-left: 0.7rem;
 }
+.image {
+  float: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 1px solid #ebebeb;
+  margin: 5px;
+  // z-index: 9000;
+}
+#caption {
+  margin-top: 1.3rem;
+  margin-left: 1.3rem;
+}
+#gall {
+  margin-left: 1.4rem;
+  margin-bottom: 3rem !important;
+}
+
 </style>

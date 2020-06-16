@@ -142,7 +142,7 @@
             <div class="md-layout-item">
               <a href="#/landing" target="_blank">
                 <img
-                  :src="landing"
+                  :v-lazy="landing"
                   alt="Rounded Image"
                   class="img-raised rounded img-fluid"
                 />
